@@ -1,0 +1,58 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+    <meta charset="utf-8">
+	 <meta name="viewport" content="width=device-width, initial-scale=1">
+	 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+	 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+	 <link rel="stylesheet" type="text/css" href="{% static 'blog/main.css' %}">
+
+	<title> 
+		{% if title != null %}
+			title
+		{% else %}
+			Django Blog
+		{% endif %}
+	</title>
+</head>
+<body>
+	{% include 'blog/navbar.html' %}
+
+	{% if messages %}
+	  	{% for message in messages %}
+	  	<div class="row" style="padding-left: 145px;">
+	    	<div class="col-md-8">
+		  		<div class="alert alert-{{ message.tags }}" role="alert">
+		  			{{ message }}
+		  		</div>
+		  	</div>
+	  	</div>
+	  	{% endfor %}
+  	{% endif %}
+
+	<main role="main" class="container">
+	  <div class="row" style="padding-left: 53px;">
+	    <div class="col-md-8">
+	      {% block content %}{% endblock %}
+	    </div>
+	    <div class="col-md-4">
+	      <div class="content-section">
+	        <h3>Our Sidebar</h3>
+	        <p class='text-muted'>You can put any information here you'd like.
+	          <ul class="list-group">
+	            <li class="list-group-item list-group-item-light">Latest Posts</li>
+	            <li class="list-group-item list-group-item-light">Announcements</li>
+	            <li class="list-group-item list-group-item-light">Calendars</li>
+	            <li class="list-group-item list-group-item-light">etc</li>
+	          </ul>
+	        </p>
+	      </div>
+	    </div>
+	  </div>
+	</main>
+
+</body>
+</html>
